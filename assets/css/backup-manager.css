@@ -1,0 +1,214 @@
+#admin-dashboard #backup-maintenance .backup-update-charts::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+#admin-dashboard #backup-maintenance .chart-wrapper {
+    position: relative;
+}
+
+#admin-dashboard #backup-maintenance .numeric {
+	display: block;
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	font-size: 1.5rem;
+	line-height: 1;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);	
+}
+
+#admin-dashboard #backup-maintenance .numeric em {
+    display: block;
+    font-style: normal;
+    font-size: 1rem;
+}
+
+#admin-dashboard #backup-maintenance p {
+    text-align: center;
+    margin: 0;
+}
+
+#admin-dashboard .backup-update-charts {
+    height: 200px;
+}
+
+#admin-dashboard .backup-update-charts #purgeStats, #admin-dashboard .backup-update-charts #backupStats {
+	height:190px;
+	overflow: none;
+	overflow-y: scroll;
+}
+
+#admin-dashboard #backup-insights .stat {
+    display: block;
+    float: left;
+    width: 20%;
+    text-align: center;
+	position: relative;
+	top: 50%;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);	
+	cursor: grab;
+}
+
+#admin-dashboard #backup-insights .stat b {
+    display: block;
+    font-size: 1.8rem;
+    line-height: 1;
+    font-weight: 300;
+}
+
+#admin-dashboard #backup-insights .stat i {
+    display: block;
+    font-style: normal;
+}
+
+#admin-dashboard #backup-insights .button-bar, #admin-dashboard #backup-maintenance .button-bar {
+    height: 80px;
+    padding: 0 1rem;
+}
+
+#admin-dashboard .backup-manager-bar i {
+	cursor: grab;
+}
+
+
+#backup-maintenance .bm-settings::after {
+    width: 12px;
+	display: inline-block;
+	content: " ";
+}
+
+#admin-dashboard #storage-chart {
+	width:50%;
+	float:left
+}
+
+#admin-dashboard #lastbackup-chart {
+	width:50%;
+	float:left;
+	position: relative;
+}
+
+.backup-manager-bar .button-group {
+	height: 100%;
+}
+
+.backup-manager-bar .info-group {
+	height: 100%;
+}
+
+.backup-manager-bar .purge-buttons {
+	float:left;
+}
+
+.backup-manager-bar .button-group .dropdown-menu {
+    background-color: #00a6cf;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+}
+
+
+#admin-dashboard .backup-manager-bar .button-group .dropdown-menu li>a:focus, #admin-dashboard .backup-manager-bar .button-group .dropdown-menu li>a:hover {
+	color:#fff;
+	background-color:#00a6cf;
+}
+
+#admin-dashboard .backup-manager-bar .button-group .button + .button, .button-group .button + .button-group, .button-group .button-group + .button, .button-group .button-group + .button-group {
+    margin-left: -3px;
+}
+
+.primary-accent .ct-chart-backup .ct-series.ct-series-a .ct-bar {
+	stroke:rgba(255,255,255,0.85) !important
+}
+.primary-accent .ct-chart-backup .ct-series.ct-series-a .ct-slice-donut {
+	stroke:#fff !important
+}
+.primary-accent .ct-chart-backup .ct-series.ct-series-b .ct-slice-donut {
+	stroke:rgba(255,255,255,0.2) !important
+}
+.secondary-accent .ct-chart-backup .ct-series.ct-series-a .ct-bar {
+	stroke:rgba(255,255,255,0.85) !important
+}
+.secondary-accent .ct-chart-backup .ct-series.ct-series-a .ct-slice-donut {
+	stroke:#fff !important
+}
+.secondary-accent .ct-chart-backup .ct-series.ct-series-b .ct-slice-donut {
+	stroke:rgba(255,255,255,0.2) !important
+}
+
+#admin-dashboard .ct-chart-backup {
+	min-height:157px
+}
+
+.ct-chart-backup .ct-series .ct-bar {
+	stroke-width:20px
+}
+
+#backupStats, #purgeStats {
+	padding-top: 1rem;
+}
+
+#backupStats i, #purgeStats i {
+    display: inline-block;
+    width: 45%;
+    text-align: right;
+    padding-right: 3%;
+}
+
+#backupStats div, #purgeStats div {
+	line-height: 1.2;
+}
+
+#backupStats div i::after, #purgeStats div i::after {
+	content: ":";
+}
+
+#backupStats div b, #purgeStats div b {
+    display: inline-flex;
+}
+
+#download-backup {
+    font-size: 1rem;
+    display: inline-block;
+    float: right;
+    color: rgba(255,255,255,0.85);
+    border-radius: 4px;
+    background: #8f5aad;	
+}
+
+#admin-main .titlebar #force-backup {
+    color: rgba(255,255,255,0.85);
+    border-radius: 4px;
+    background: #8f5aad;
+}
+
+#admin-main .titlebar #force-backup span, #admin-main .titlebar #force-purge span {
+	padding-left:10px;
+}
+
+#admin-main .titlebar #force-backup span::before, #admin-main .titlebar #force-purge span::before {
+	content: ":";
+	margin-right: 10px;
+}
+
+#admin-main .hint::after, #admin-main [data-hint]::after {
+	font-size: 1.0rem !important;
+}
+
+
+@media only screen and (max-width: 767px) {
+	/*
+	#admin-main .hint::after, #admin-main [data-hint]::after {
+		font-size: 1.0rem !important;
+	}
+	*/
+}
