@@ -1,0 +1,108 @@
+PLUGIN_BACKUP_MANAGER:
+  BACKUP_MANAGER: Enhanced Backup for GRAV
+  BACKUP_OVERVIEW: Backup Statistics
+  STORAGE: Storage
+  STORAGE_CAPACITY: Capacity
+  BACKUP: BACKUP
+  PURGE: Purge
+  PURGE_TESTS: Tests
+  PURGE_ALL: All
+  PURGE_PARTIALS: Partials
+  LAST_24H: "< 24h"
+  LAST_SITE_BACKUP: Last site backup
+  STORAGE_STATE: Status
+  STORAGE_UNMANAGED: Unmanaged
+  STORAGE_USED: Used
+  BACKUP_PAGES: Pages
+  BACKUP_MEDIA: Media
+  BACKUP_IMAGES: Images
+  BACKUP_DATA: Data
+  BACKUP_USER: User
+  BACKUP_CONFIG: Config
+  BACKUP_SYSTEM: System
+  BACKUP_THEMES: Themes
+  BACKUP_PLUGINS: Plugins
+  BACKUP_DEFAULTS: Defaults
+  PURGE_PAGES: Pages
+  PURGE_MEDIA: Media
+  PURGE_IMAGES: Images
+  PURGE_DATA: Data
+  PURGE_USER: User
+  PURGE_CONFIG: Config
+  PURGE_SYSTEM: System
+  PURGE_THEMES: Themes
+  PURGE_FAILED: Failed
+  PURGE_PLUGINS: Plugins
+  BACKUP_DEFAULTS: Defaults
+  INSIGHTS: Details
+  LATEST_BACKUPS: Latest backups
+  PARTIAL_BACKUPS: Partials
+  PARTIAL_BACKUP: Partial
+  SITE_BACKUP: Instance
+  SITE_BACKUPS: Site
+  TEST_BACKUPS: Tests
+  ALL_BACKUPS: All
+  LAST_30_DAYS: < 30 days
+  LAST_7_DAYS: < 7 days
+  LAST_SEVEN_DAYS: Site backups generated during the last seven days
+  PURGE_SUCCESS: Your backup store has been purged.
+  TASK_SITE: Site Backup
+  TASK_PURGE: Simple Purge
+  TASK_PURGETESTS: Purge Tests
+  TASK_PURGEALL: Purge All
+  TASK_PURGEPARTIALS: Purge Partials
+  TASK_PURGEMEDIA: Purge Media
+  TASK_PURGESYSTEM: Purge System
+  TASK_PURGEIMAGES: Purge Images
+  TASK_PURGEFAILED: Purge Failed
+  TASK_PURGEDATA: Purge Data
+  TASK_PURGETHEMES: Purge Themes
+  TASK_PURGEPAGES: Purge Pages
+  TASK_PURGEPLUGINS: Purge Plugins  
+  TASK_PURGEUSER: Purge User 
+  TASK_PURGECONFIG: Purge Configs  
+  TASK_MEDIA: Media Backup
+  TASK_IMAGES: Image Backup
+  TASK_CONFIG: Support Backup
+  TASK_THEMES: Themes Backup
+  TASK_SYSTEM: System Backup
+  TASK_DATA: Data Backup
+  TASK_USER: User Backup
+  TASK_PAGES: Pages Backup
+  EXCLUDED_FILES: Files excluded
+  FILES_TO_ZIP: Files to zip
+  BYTES_TO_ZIP: Bytes to zip
+  BYTES_ZIPPED: Bytes zipped
+  SAVINGS: Saved
+  RATIO: Compression Ratio
+  DURATION: Duration
+  ZIP_STATUS: Zip Status
+  PROCESS_TIMEOUT: Process Timeout
+  EXECUTE_BACKUP: Backup Live Run
+  EXECUTE_PURGE: Purge Live Run
+  FAILED_BACKUPS_HINT: Backups that failed within the last four hours (or more). Please reload the page to see updated statistics.
+  FAILED_BACKUPS: Failed
+  BACKUP_TYPE: Backup Scope
+  PURGE_TYPE: Purge Scope
+  EXECUTE_BACKUP_HINT: "You're working in test mode. You can generate a real backup based on the settings of the last test run using this button."
+  EXECUTE_PURGE_HINT: "You're working in test mode. You can do a real purge based on the settings of your last test run using this button."
+  STORE_FILES_DELETED_HINT: "Backup Manager only deletes failed backups when older than four hours. If you run in test mode, you have to execute purge as a live run. In Test Mode you get some insight on what will be deleted."
+  STORE_FILES_DELETED: Files deleted
+  KEEP_DAYS: Days to keep backups
+  PURGED_BYTES: Purged Bytes
+  FILES_OVER_MAX_DAYS: Files over keep days
+  FILES_OVER_MAX_CAPACITY: Files over capacity
+  PURGE_BUTTON_HINT: The default purge executes every time you generate a backup in live mode. You have to set capacity and keep days in the plugin configuration to establish a managed backup storage.
+  STORE_LOCATION: Storage location
+  BACKUP_SUCCESS_TESTMODE: "TEST MODE: Nothing really done. Please use Live Run to execute."
+  PURGE_SUCCESS_TESTMODE: "TEST MODE: Nothing really done. Please use Live Run to execute."
+  DOWNLOAD_BACKUP_TESTMODE: Download TEST PURPOSES ONLY
+  DOWNLOAD_TESTMODE_HINT: This zip is for testing only. It reflects the folder structure without files.
+  TEST_MODE_INDICATOR: SAVE MODE (TEST)
+  LIVE_MODE_INDICATOR: LIVE MODE
+  DOWNLOAD_TEST: Download test
+  SETTINGS: Settings
+  BACKUP_TYPE: Type
+  BACKUP_DATE: Date
+  BACKUP_SIZE: Size
+  BACKUP_DOWNLOAD: Download
