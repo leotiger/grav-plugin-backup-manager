@@ -68,7 +68,7 @@ that allows for easy integration of backup functionality.
 
 Users of emerging projects like Grav need freedom. Backup and archive facilities that work
 hazzle-free, offer confidence. Pages, content, media: users want to be free, easy...
-But it's not only about user inspired opportunities, this backup manager offers a lot toç
+But it's not only about opportunities and freedom, this backup manager offers a lot to
 admins as well. And there's more to come if this plugin receives some positive feedback!
 
 And yeah: invited to contribute!
