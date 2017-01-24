@@ -1,0 +1,206 @@
+name: Backup Manager
+version: 0.1.0
+description: Enhanced backup for GRAV with CLI support
+keywords: backup, partial, archive, support, image extraction, pages backup, media backup, cli
+icon: battery-3
+author:
+  name: Uli Hake
+  email: info@saveva.com
+  url: http://www.saveva.com
+homepage: https://github.com/leotiger/grav-plugin-backup-manager
+bugs: https://github.com/leotiger/grav-plugin-backup-manager/issues
+docs: https://github.com/leotiger/grav-plugin-backup-manager/blob/develop/README.md
+license: MIT
+
+dependencies:
+  - admin
+
+form:
+  validation: strict
+  fields:
+    enabled:
+      type: toggle
+      label: Plugin status
+      highlight: 1
+      default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+
+    Backup:
+        type: section
+        title: Backup
+        underline: true
+
+        fields:
+            backup.admin.pages:
+                type: toggle
+                label: Allow pages backup for admin.pages
+                help: "If enabled users that have access to pags can backup content they are allowed to edit."
+                highlight: 0
+                default: 0
+                options:
+                    1: PLUGIN_ADMIN.ENABLED
+                    0: PLUGIN_ADMIN.DISABLED
+                validate:
+                    type: bool
+
+            backup.testmode.enabled:
+                type: toggle
+                label: Test configuration
+                help: "Please test your configuration first. This is important as your backup file may increase in size, especially when you operate with intersects enabled."
+                highlight: 1
+                default: 1
+                options:
+                    1: PLUGIN_ADMIN.ENABLED
+                    0: PLUGIN_ADMIN.DISABLED
+                validate:
+                    type: bool
+
+            backup.testmode.compressionratio:
+                type: text
+                size: small
+                label: Assumed Compression Rate for tests
+                default: 1.2
+                help: "This ratio is used to offer estimates when running backup tests."
+                validate:
+                    type: float
+                    min: 1
+                    max: 5
+
+            backup.phptimeout:
+                type: text
+                size: small
+                append: sec
+                label: Backup Timeout      
+                default: 600
+                help: "Sets the backup timeout in seconds"
+                validate:
+                    type: int
+                    min: 60
+                    max: 1800
+
+            backup.storage.maxspace:
+                type: text
+                size: small
+                append: GB
+                label: Maximum space allowed for backups
+                default: 10
+                help: "Sets the backup space maximum in GB (GigaBytes). If existing backups consume more space, GRAV will FIFO clean the backup destination to free up space. A value of 0 disables the backup space handler."
+                validate:
+                    type: int
+                    min: 0
+                    max: 2048
+                    step: 1
+
+            backup.storage.keepdays:
+                type: text
+                size: small
+                append: days
+                label: Keep backups x days
+                default: 10
+                help: "Keep older backups for specified days. 0 disables this handler."
+                validate:
+                    type: int
+                    min: 0
+                    max: 365
+                    step: 1
+
+            backup.log:
+                type: toggle
+                label: Include log
+                help: "Include a log inside of the backup with status information about the backup. (Will be stored in the backup folder of the backup zip.)"
+                highlight: 1
+                default: 1
+                options:
+                    1: PLUGIN_ADMIN.ENABLED
+                    0: PLUGIN_ADMIN.DISABLED
+                validate:
+                    type: bool
+
+            backup.ignore.foldercase:
+                type: toggle
+                label: Case insensitive
+                help: "Detect folders to ignore without applying case sensitivity."
+                highlight: 1
+                default: 1
+                options:
+                    1: PLUGIN_ADMIN.ENABLED
+                    0: PLUGIN_ADMIN.DISABLED
+                validate:
+                    type: bool
+
+
+            backup.ignore.toplevelfolders:
+                type: array
+                label: Ignore top level folders
+                size: large
+                help: "Top level folders to ignore. Backup excludes backup, cache, images, logs and tmp folder out of the box."
+                default: []
+                value_only: true
+                placeholder_value: ignore-top-level-folder
+                
+            backup.ignore.toplevelintersect:
+                type: toggle
+                label: Intersect top level folders
+                help: "Intersect your folder definitions with the predefined top level folders. Predefined top levels folders that do not appear in your definitions will be included in the backup when this option is enabled. There's one restriction: The default GRAV backup folder will never be included in a backup to avoid system shortages."
+                highlight: 0
+                default: 0
+                options:
+                    1: PLUGIN_ADMIN.ENABLED
+                    0: PLUGIN_ADMIN.DISABLED
+                validate:
+                    type: bool
+
+            backup.ignore.folders:
+                type: array
+                label: Ignore folder name
+                size: large
+                help: "Folders names to ignore whereever they are found in your GRAV directory tree. GRAV backup ignores .git, .svn, .hg, .idea and node_modules already."
+                default: []
+                value_only: true
+                placeholder_value: ignore-foldername-anywhere
+
+            backup.ignore.foldersintersect:
+                type: toggle
+                label: Intersect ignored folders
+                help: "Intersect your folder definitions with the predefined folders to ignore anywhere. Predefined folders that do not appear in your definitions won't be ignored when this option is enabled."
+                highlight: 0
+                default: 0
+                options:
+                    1: PLUGIN_ADMIN.ENABLED
+                    0: PLUGIN_ADMIN.DISABLED
+                validate:
+                    type: bool
+
+            backup.ignore.addasemptyfolder:
+                type: array
+                label: Add as empty folder
+                size: large
+                help: "Folders to to add as empty folders whereever they are found in the GRAV directory tree. Backup adds one level of empty subfolders with their names to offer more information about the contents that resided in this folder."
+                default: []
+                value_only: true
+                placeholder_value: add-as-empty-folder
+
+            backup.ignore.forceaddasempty:
+                type: toggle
+                label: Force add as empty folder
+                highlight: 0
+                default: 0
+                options:
+                    1: PLUGIN_ADMIN.ENABLED
+                    0: PLUGIN_ADMIN.DISABLED
+                validate:
+                    type: bool
+                help: "Enable this option if you have problems with backup generation while using the SITE scope backup. This way you can exclude some folders to leverage the backup package."
+
+            backup.ignore.filetypes:
+                type: array
+                label: Ignore file types
+                size: large
+                help: "Files of this type should not be included in the backup."
+                default: []
+                value_only: true
+                placeholder_value: ignore-files-of-type
