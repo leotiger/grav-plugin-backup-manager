@@ -53,9 +53,10 @@ support out of the box in the future...
 This plugin inludes support for cli and thus for automization. CLI allows for additional 
 options. Investigate. Not all is fail-safe, but a lot of the stuff works well.
 
-One of the nice CLI features: you can specify "desperate/disparate" folders and a lot to
-be included in a backup... (Hope it works, haven't even testet thourhouly part of the
-features: one man out on mother sea a day...
+One of the nice CLI features: you can specify "free" folders and a lot of them, all to
+be included in a backup, doesn't matter where they are in the Grav instance... 
+(Hope all this works good enough to maintain your interest, I didn't had the time to test
+all of the features thoroughly: one man out on a mother sea today...
 
 ## Credits
 
