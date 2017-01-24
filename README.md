@@ -61,8 +61,8 @@ features: one man out on mother sea a day...
 You will find some known code. This is due to the fact that the first goal was to offer
 a core enhancement for Grav itself. But this approach needs a lot of coordination with 
 the Grav people. Difficult. Finally the decision to make a plugin out of this may have 
-more pros than cons. Nevertheless I obliged myself to work hard on a core compatible code
-that allows for easy integration of backup functionality.
+more pros than cons. Nevertheless, I obliged myself to work hard on core compatible code
+that allows for an easy integration of backup functionality.
 
 ## Why is user driven backup important?
 
