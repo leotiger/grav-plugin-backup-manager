@@ -1,0 +1,27 @@
+{% if authorize(['admin.backup', 'admin.maintenance', 'admin.super']) %}
+    <div id="latest">
+        <h1>{{ "PLUGIN_BACKUP_MANAGER.LATEST_BACKUPS"|tu }}</h1>
+        <table>
+        {% for latest in backupmanager.latestBackups if backupmanager.latestBackups %}
+            <tr>
+                <td class="triple page-title">
+                    <a href="{{ latest.zipurl }}"><i class="fa fa-fw fa-file-text-o"></i> {{ latest.zipname|e }}</a>
+				</td>
+				<td>{{ latest.zipdate }}</td>
+                <td class="text-right" align="right">{{ latest.zipsize }}</td>
+				<td align="right">
+				{{ latest.ziptype }}
+				</td>
+            </tr>
+        {% endfor %}
+			<tr>
+			<td class="triple">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_DOWNLOAD"|tu }}</td>
+			<td class="text-center" align="center">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_DATE"|tu }}</td>
+			<td class="text-right" align="right">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_SIZE"|tu }}</td>
+			<td class="text-right" align="right">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_TYPE"|tu }}</td>
+			</tr>
+			</table>
+    </div>
+{% else %}
+    <div class="padding">You don't have sufficient access to view the dashboard...</div>
+{% endif %}

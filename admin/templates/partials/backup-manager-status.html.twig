@@ -1,0 +1,100 @@
+{% if authorize(['admin.backup', 'admin.super']) %}
+    {% set backuplast = backupmanager.lastBackup() %}
+	{% set storestatus = backupmanager.storeStatus() %}	
+	{% set backup_manager_url = base_url_relative ~ '/backup-manager.json/backuptask' ~ config.system.param_sep ~ 'backup'|e('html_attr') %}
+	{% set purge_manager_url = base_url_relative ~ '/backup-manager.json/backuptask' ~ config.system.param_sep ~ 'purge'|e('html_attr') %}
+    <div id="backup-maintenance" class="dashboard-item dashboard-left">
+        <div class="secondary-accent default-box-shadow">
+            <h1>{{ "PLUGIN_BACKUP_MANAGER.BACKUP_OVERVIEW"|tu }}</h1>
+            <div id="backup-manager-charts" class="backup-update-charts">
+                <div id="storage-chart" class="backups-chart" data-chart-context="storage" data-chart-type="pie" data-chart-data="{{ {'series': [storestatus.chart_fill, storestatus.chart_empty]}|json_encode|e('html_attr') }}">
+                    <div class="chart-wrapper">
+                        <div id="chart-storage" class="ct-chart-backup chart-loader"><i class="fa fa-refresh fa-spin"></i></div>
+                        <span class="numeric hidden"><span id="store-used">{{ storestatus.used }}</span><em>{{ "PLUGIN_BACKUP_MANAGER.STORAGE_USED"|tu|lower }}</em></span>
+                    </div>
+                    <p class="js__storage-handled-description">{{ "PLUGIN_BACKUP_MANAGER.STORAGE_CAPACITY"|tu ~ ': ' ~ storestatus.capacity }}</p>
+                </div>
+				{% if backuplast.days == 0 %}
+                <div id="lastbackup-chart" class="backups-chart" data-chart-context="lastbackup" data-chart-type="pie" data-chart-data="{{ {'series': [100, 0]}|json_encode|e('html_attr') }}">
+                    <div class="chart-wrapper">
+                        <div id="chart-backup" class="ct-chart-backup chart-loader"><i class="fa fa-refresh fa-spin"></i></div>
+                        <span class="numeric hidden">
+						{{ "PLUGIN_BACKUP_MANAGER.LAST_24H"|tu }}
+						<em>{{ "PLUGIN_ADMIN.TODAY"|tu|lower }}</em></span>
+                    </div>
+                    <p class="hidden">{{ "PLUGIN_BACKUP_MANAGER.LAST_SITE_BACKUP"|tu }}</p>
+                </div>
+				{% else %}
+                <div id="lastbackup-chart" class="backups-chart" data-chart-context="lastbackup" data-chart-type="pie" data-chart-data="{{ {'series': [backuplast.chart_fill, backuplast.chart_empty]}|json_encode|e('html_attr') }}">
+                    <div class="chart-wrapper">
+                        <div id="chart-backup class="ct-chart-backup chart-loader"><i class="fa fa-refresh fa-spin"></i></div>
+                        <span class="numeric hidden">
+						{{ backup.days|raw }}
+						<em>{{ "PLUGIN_ADMIN.DAYS"|tu|lower }}</em></span>
+                    </div>
+                    <p class="hidden">{{ "PLUGIN_ADMIN.LAST_SITE_BACKUP"|tu }}</p>
+                </div>
+				{% endif %}
+				
+            </div>
+
+            <div class="flush-bottom button-bar backup-manager-bar">
+				<div class="button-group purge-buttons">
+					<button data-purge-scope="" data-purge="{{ uri.addNonce(base_url_relative ~ '/backup-manager.json/backuptask' ~ config.system.param_sep ~ 'purge', 'backup-form', 'backup-nonce') }}" class="button hint--bottom" data-hint="{{ "PLUGIN_BACKUP_MANAGER.PURGE_BUTTON_HINT"|tu }}"><i class="fa fa-battery-{{storestatus.battery|raw}}"></i> {{ "PLUGIN_BACKUP_MANAGER.PURGE"|tu }}</button>
+					<button type="button" class="button dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-caret-down"></i>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a data-purge-scope="tests" data-purge="{{  uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgetests', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_TESTS"|tu }}</a></li>
+						{% if authorize(['admin.maintenance', 'admin.super']) %}
+						<li><a data-purge-scope="partials" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgepartials', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_PARTIALS"|tu }}</a></li>
+						<li><a data-purge-scope="all" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgeall', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_ALL"|tu }}</a></li>
+						<li><a data-purge-scope="pages" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgepages', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_PAGES"|tu }}</a></li>
+						<li><a data-purge-scope="images" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgeimages', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_IMAGES"|tu }}</a></li>
+						<li><a data-purge-scope="media" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgemedia', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_MEDIA"|tu }}</a></li>
+						<li><a data-purge-scope="themes" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgethemes', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_THEMES"|tu }}</a></li>
+						<li><a data-purge-scope="user" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgeuser', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_USER"|tu }}</a></li>
+						<li><a data-purge-scope="data" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgedata', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_DATA"|tu }}</a></li>
+						<li><a data-purge-scope="plugins" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgeplugins', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_PLUGINS"|tu }}</a></li>
+						<li><a data-purge-scope="config" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgeconfig', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_CONFIG"|tu }}</a></li>
+						<li><a data-purge-scope="system" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgesystem', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_SYSTEM"|tu }}</a></li>
+						<li><a data-purge-scope="failed" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgefailed', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_FAILED"|tu }}</a></li>					
+						{% elseif authorize(['admin.backup']) %}
+						<li><a data-purge-scope="failed" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgefailed', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_FAILED"|tu }}</a></li>					
+						{% endif %}
+					</ul>
+				</div>
+
+				<div class="button-group">
+					{% if authorize(['admin.maintenance', 'admin.super']) %}
+					<button data-backup-type="" data-backup="{{ uri.addNonce(base_url_relative ~ '/backup-manager.json/backuptask' ~ config.system.param_sep ~ 'backup', 'backup-form', 'backup-nonce') }}" class="button"><i class="fa fa-suitcase"></i> {{ "PLUGIN_BACKUP_MANAGER.BACKUP"|tu }}</button>
+					<button type="button" class="button dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-caret-down"></i>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a data-backup-scope="pages" data-backup="{{  uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'pages', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_PAGES"|tu }}</a></li>
+						<li><a data-backup-scope="images" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'images', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_IMAGES"|tu }}</a></li>
+						<li><a data-backup-scope="media" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'media', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_MEDIA"|tu }}</a></li>
+						<li><a data-backup-scope="data" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'data', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_DATA"|tu }}</a></li>
+						<li><a data-backup-scope="user" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'user', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_USER"|tu }}</a></li>
+						<li><a data-backup-scope="themes" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'themes', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_THEMES"|tu }}</a></li>
+						<li><a data-backup-scope="plugins" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'plugins', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_PLUGINS"|tu }}</a></li>
+						<li><a data-backup-scope="config" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'config', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_CONFIG"|tu }}</a></li>
+						<li><a data-backup-scope="system" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'system', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_SYSTEM"|tu }}</a></li>
+						<li><a data-backup-scope="defaults" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'defaults', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_DEFAULTS"|tu }}</a></li>
+					</ul>
+					{% elseif authorize(['admin.backup']) %}
+					<button data-backup-type="" data-backup="{{ uri.addNonce(base_url_relative ~ '/backup-manager.json/backuptask' ~ config.system.param_sep ~ 'backup/scope' ~ config.system.param.sep ~ 'pages', 'backup-form', 'backup-nonce') }}" class="button"><i class="fa fa-suitcase"></i> {{ "PLUGIN_BACKUP_MANAGER.BACKUP_PAGES"|tu }}: {{ "PLUGIN_BACKUP_MANAGER.BACKUP_PAGES"|tu }}</button>
+					<button type="button" class="button dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-caret-down"></i>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a data-backup-scope="images" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'images', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_IMAGES"|tu }}</a></li>
+						<li><a data-backup-scope="media" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'media', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_MEDIA"|tu }}</a></li>
+					</ul>
+					{% endif %}
+				</div>
+            </div>
+        </div>
+	</div>
+{% endif %}

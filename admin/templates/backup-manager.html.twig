@@ -1,0 +1,42 @@
+{% extends 'partials/base.html.twig' %}
+{% if admin.route %}
+    {% set context = admin.page(true) %}
+{% endif %}
+{% set storestatus = backupmanager.storeStatus() %}
+
+{% block titlebar %}
+	<div class="button-bar">
+	
+		<a id="force-purge" data-purge-type="" data-purge="" class="button hidden hint--bottom-left" data-hint="{{ "PLUGIN_BACKUP_MANAGER.EXECUTE_PURGE_HINT"|tu }}"><i class="fa fa-battery-{{storestatus.battery|raw}}"></i> {{ "PLUGIN_BACKUP_MANAGER.EXECUTE_PURGE"|tu }}<span></span></a>
+		<a id="force-backup" data-backup-type="" data-backup="" class="button hidden hint--bottom-left" data-hint="{{ "PLUGIN_BACKUP_MANAGER.EXECUTE_BACKUP_HINT"|tu }}"><i class="fa fa-suitcase"></i> {{ "PLUGIN_BACKUP_MANAGER.EXECUTE_BACKUP"|tu }}<span></span></a>
+		{% if authorize(['admin.maintenance', 'admin.super']) %}
+			<a class="button bm-settings" href="{{ base_url }}/plugins/backup-manager"><i class="fa fa-gavel"></i> {{ "PLUGIN_BACKUP_MANAGER.SETTINGS"|tu }}</a>
+		{% endif %}		
+		<a class="button" href="{{ base_url }}"><i class="fa fa-reply"></i> {{ "PLUGIN_ADMIN.BACK"|tu }}</a>
+	</div>
+    <h1><i class="fa fa-fw fa-file-text-o"></i> {{ "PLUGIN_BACKUP_MANAGER.BACKUP_MANAGER"|tu }} - 
+	{% if backupmanager.testmode %}
+	{{ "PLUGIN_BACKUP_MANAGER.TEST_MODE_INDICATOR"|tu }}
+	{% else %}
+	{{ "PLUGIN_BACKUP_MANAGER.LIVE_MODE_INDICATOR"|tu }}
+	{% endif %}
+	</h1>
+{% endblock %}
+
+{% block widgets %}
+	<div id="admin-dashboard">
+		<div class="dashboard-item-flex">
+			{% include "partials/backup-manager-status.html.twig" %}
+		</div>
+		<div class="dashboard-item-flex">
+			{% include "partials/backup-manager-laststatus.html.twig" %}
+		</div>
+	</div>
+
+{% endblock %}
+{% block content %}
+    {% include 'partials/backup-manager-backups.html.twig' %}
+
+	<div class="page-backup">
+	</div>
+{% endblock %}

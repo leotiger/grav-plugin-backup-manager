@@ -1,0 +1,5 @@
+{% if backup.json_response %}
+{% backup.json_response|json_encode %}
+{% else %}
+{}
+{% endif %}

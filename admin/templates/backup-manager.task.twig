@@ -1,0 +1,5 @@
+{% if backup.json_response %}
+{{ backup.json_response|json_encode }}
+{% else %}
+{{"series: [30,70]"|jsonenconde|raw}}
+{% endif %}

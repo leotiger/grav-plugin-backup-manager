@@ -1,0 +1,116 @@
+{% if authorize(['admin.backup', 'admin.super']) %}
+    <div id="backup-insights" class="dashboard-item dashboard-right">
+        <div class="primary-accent default-box-shadow">
+            <h1>{{ "PLUGIN_BACKUP_MANAGER.INSIGHTS"|tu }} 
+				{% if backupmanager.testmode %}
+					<a id="download-backup" href="" class="button hidden">{{ "PLUGIN_BACKUP_MANAGER.DOWNLOAD_TEST"|tu }}</a>				
+				{% else %}
+					<a id="download-backup" href="" class="button hidden">{{ "PLUGIN_ADMIN.DOWNLOAD_BACKUP"|tu }}</a>				
+				{% endif %}			
+			</h1>
+            <div class="backup-update-charts">
+			    <div id="purgeStats" class="hidden">
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.PURGE_TYPE"|tu }}</i>
+						<b id="purge-type"></b>						
+					</div>				
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.STORE_LOCATION"|tu }}</i>
+						<b id="store-location"></b>						
+					</div>				
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.STORAGE_CAPACITY"|tu }}</i>
+						<b id="store-capacity"></b>						
+					</div>				
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.STORAGE_USED"|tu }}</i>
+						<b id="storage-used"></b>						
+					</div>
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.KEEP_DAYS"|tu }}</i>
+						<b id="keep-days"></b>						
+					</div>
+					<div>
+						<i class="hint--bottom-left" data-hint="{{ "PLUGIN_BACKUP_MANAGER.STORE_FILES_DELETED_HINT"|tu }}">{{ "PLUGIN_BACKUP_MANAGER.STORE_FILES_DELETED"|tu }}</i>
+						<b id="files-deleted"></b>						
+					</div>				
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.PURGED_BYTES"|tu }}</i>
+						<b id="purged-bytes"></b>						
+					</div>				
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.FILES_OVER_MAX_DAYS"|tu }}</i>
+						<b id="files-over-days"></b>						
+					</div>				
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.FILES_OVER_MAX_CAPACITY"|tu }}</i>
+						<b id="files-over-capacity"></b>						
+					</div>				
+				</div>
+				<div id="backupStats" class="hidden">
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.BACKUP_TYPE"|tu }}</i>
+						<b id="backup-type"></b>						
+					</div>				
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.ZIP_STATUS"|tu }}</i>
+						<b id="zip-status"></b>						
+					</div>				
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.EXCLUDED_FILES"|tu }}</i>
+						<b id="excluded-files"></b>						
+					</div>				
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.BYTES_TO_ZIP"|tu }}</i>
+						<b id="bytes-to-zip"></b>						
+					</div>
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.BYTES_ZIPPED"|tu }}</i>
+						<b id="bytes-zipped"></b>						
+					</div>
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.SAVINGS"|tu }}</i>
+						<b id="savings"></b>						
+					</div>				
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.RATIO"|tu }}</i>
+						<b id="ratio"></b>						
+					</div>				
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.DURATION"|tu }}</i>
+						<b id="duration"></b>						
+					</div>				
+					<div>
+						<i>{{ "PLUGIN_BACKUP_MANAGER.PROCESS_TIMEOUT"|tu }}</i>
+						<b id="process-timeout"></b>						
+					</div>
+				</div>
+				
+                <div class="ct-chart-backup chart-loader hidden"><i class="fa fa-refresh fa-spin"></i></div>
+            </div>
+			<div class="flush-bottom button-bar stats-bar backup-manager-bar">
+				<span id="partialbackups" class="stat">
+					<b id="store-partials" style="font-size:1.8rem">{{ backupmanager.getPartials }}</b>
+					<i>{{ "PLUGIN_BACKUP_MANAGER.PARTIAL_BACKUPS"|tu }}</i>
+				</span>
+				<span id="sitebackups" class="stat">
+					<b id="store-instance" style="font-size:1.8rem">{{ backupmanager.getInstance }}</b>
+					<i>{{ "PLUGIN_BACKUP_MANAGER.SITE_BACKUPS"|tu }}</i>
+				</span>
+				<span id="monthbackups" class="stat">
+					<b id="store-period" style="font-size:1.8rem">{{ backupmanager.getPeriod }}</b>
+					<i class="hint--bottom-right" data-hint="{{ "PLUGIN_BACKUP_MANAGER.LAST_SEVEN_DAYS"|tu }}">{{ "PLUGIN_BACKUP_MANAGER.LAST_7_DAYS"|tu }}</i>
+				</span>
+				<span id="testbackups" class="stat">
+					<b id="store-tests" style="font-size:1.8rem">{{ backupmanager.getTests }}</b>
+					<i>{{ "PLUGIN_BACKUP_MANAGER.TEST_BACKUPS"|tu }}</i>
+				</span>
+				<span id="allbackups" class="stat">
+					<b id="store-failed" style="font-size:1.8rem">{{ backupmanager.getFailed }}</b>
+					<i class="hint--bottom-left" data-hint="{{ "PLUGIN_BACKUP_MANAGER.FAILED_BACKUPS_HINT"|tu }}">{{ "PLUGIN_BACKUP_MANAGER.FAILED_BACKUPS"|tu }}</i>
+				</span>
+			</div>
+			
+        </div>
+    </div>
+{% endif %}
