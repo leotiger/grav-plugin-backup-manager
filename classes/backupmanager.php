@@ -429,22 +429,24 @@ class BackupManager
      *
      * @param string $task        The task to execute
      * @param array  $permissions The permissions given
+	 * @param bool   $nomessage   Supress the message delivery to allow permission testing from the inside
      *
      * @return bool True if authorized. False if not.
      */
-    protected function authorizeTask($task = '', $permissions = [])
+    protected function authorizeTask($task = '', $permissions = [], $nomessage = false)
     {
         if (!$this->authorize($permissions)) {
-            if ($this->grav['uri']->extension() === 'json') {
-                $this->json_response = [
-                    'status'  => 'unauthorized',
-                    'message' => $this->translate('PLUGIN_ADMIN.INSUFFICIENT_PERMISSIONS_FOR_TASK') . ' ' . $task . '.'
-                ];
-            } else {
-                $this->setMessage($this->translate('PLUGIN_ADMIN.INSUFFICIENT_PERMISSIONS_FOR_TASK') . ' ' . $task . '.',
-                    'error');
-            }
-
+			if (!$nomessage) {
+				if ($this->grav['uri']->extension() === 'json') {
+					$this->json_response = [
+						'status'  => 'unauthorized',
+						'message' => $this->translate('PLUGIN_ADMIN.INSUFFICIENT_PERMISSIONS_FOR_TASK') . ' ' . $task . '.'
+					];
+				} else {
+					$this->setMessage($this->translate('PLUGIN_ADMIN.INSUFFICIENT_PERMISSIONS_FOR_TASK') . ' ' . $task . '.',
+						'error');
+				}
+			}
             return false;
         }
 
@@ -582,7 +584,7 @@ class BackupManager
     protected function taskPurge()
     {
         $param_sep = $this->grav['config']->get('system.param_sep', ':');
-        if (!$this->authorizeTask('backup', ['admin.backup', 'admin.maintenance', 'admin.super'])) {
+        if (!$this->authorizeTask('backup', ['admin.backup-manager', 'admin.maintenance', 'admin.super'])) {
             return false;
         }
         // Get optional backup scope param
@@ -675,7 +677,7 @@ class BackupManager
     protected function taskBackup()
     {
         $param_sep = $this->grav['config']->get('system.param_sep', ':');
-        if (!$this->authorizeTask('backup', ['admin.backup', 'admin.maintenance', 'admin.super'])) {
+        if (!$this->authorizeTask('backup', ['admin.backup-manager', 'admin.maintenance', 'admin.super'])) {
             return false;
         }
         // Get optional backup scope param
@@ -796,7 +798,7 @@ class BackupManager
 		
         $param_sep = $this->grav['config']->get('system.param_sep', ':');
 		$restrict = false;
-		if (!$this->authorizeTask('backup', ['admin.maintenance', 'admin.super'])) {
+		if (!$this->authorizeTask('backup', ['admin.maintenance', 'admin.super'], true)) {
 			// Is our third credential holder a admin.backup user
 			$restrict = true;
 		}

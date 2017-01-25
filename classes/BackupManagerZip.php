@@ -766,6 +766,12 @@ class BackupManagerZip
 			$localPath = substr(rtrim(GRAV_ROOT, DS) . '/backup', $exclusiveLength);
 			$zip->addFromString($localPath . '/backup.log', static::$hint_content);
 		}
+		
+		if (static::$configScope == 'config' || static::$configScope == 'system') {
+			$phpinfo = static::phpinfo();
+			$localPath = substr(rtrim(GRAV_ROOT, DS) . '/backup', $exclusiveLength);
+			$zip->addFromString($localPath . '/phpinfo.html', $phpinfo);
+		}
 				
         $messager && $messager([
             'type' => 'progress',
@@ -1605,6 +1611,24 @@ class BackupManagerZip
 		return $latest;
 
 	}
+	
+    /**
+     * Renders phpinfo
+     *
+     * @return string The phpinfo() output
+     */
+    private static function phpinfo()
+    {
+        if (function_exists('phpinfo')) {
+            ob_start();
+            phpinfo();
+            $pinfo = ob_get_contents();
+            ob_end_clean();
+            return $pinfo;
+        } else {
+            return 'phpinfo() method is not available on this server.';
+        }
+    }
 	
     /**
 	 * @param bool $formatted
