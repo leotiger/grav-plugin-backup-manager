@@ -1,4 +1,4 @@
-{% if authorize(['admin.backup', 'admin.super']) %}
+{% if authorize(['admin.backup-manager', 'admin.maintenance', 'admin.super']) %}
     {% set backuplast = backupmanager.lastBackup() %}
 	{% set storestatus = backupmanager.storeStatus() %}	
 	{% set backup_manager_url = base_url_relative ~ '/backup-manager.json/backuptask' ~ config.system.param_sep ~ 'backup'|e('html_attr') %}
@@ -47,7 +47,7 @@
 					<ul class="dropdown-menu">
 						<li><a data-purge-scope="tests" data-purge="{{  uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgetests', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_TESTS"|tu }}</a></li>
 						{% if authorize(['admin.maintenance', 'admin.super']) %}
-						<li><a data-purge-scope="partials" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgepartials', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_PARTIALS"|tu }}</a></li>
+						<li><a data-purge-scope="partial" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgepartial', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_PARTIAL"|tu }}</a></li>
 						<li><a data-purge-scope="all" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgeall', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_ALL"|tu }}</a></li>
 						<li><a data-purge-scope="pages" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgepages', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_PAGES"|tu }}</a></li>
 						<li><a data-purge-scope="images" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgeimages', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_IMAGES"|tu }}</a></li>
@@ -59,7 +59,7 @@
 						<li><a data-purge-scope="config" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgeconfig', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_CONFIG"|tu }}</a></li>
 						<li><a data-purge-scope="system" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgesystem', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_SYSTEM"|tu }}</a></li>
 						<li><a data-purge-scope="failed" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgefailed', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_FAILED"|tu }}</a></li>					
-						{% elseif authorize(['admin.backup']) %}
+						{% elseif authorize(['admin.backup-manager']) %}
 						<li><a data-purge-scope="failed" data-purge="{{ uri.addNonce(purge_manager_url ~'/scope' ~ config.system.param_sep ~ 'purgefailed', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.PURGE_FAILED"|tu }}</a></li>					
 						{% endif %}
 					</ul>
@@ -83,7 +83,7 @@
 						<li><a data-backup-scope="system" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'system', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_SYSTEM"|tu }}</a></li>
 						<li><a data-backup-scope="defaults" data-backup="{{ uri.addNonce(backup_manager_url ~'/scope' ~ config.system.param_sep ~ 'defaults', 'backup-form', 'backup-nonce') }}" href="#">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_DEFAULTS"|tu }}</a></li>
 					</ul>
-					{% elseif authorize(['admin.backup']) %}
+					{% elseif authorize(['admin.backup-manager']) %}
 					<button data-backup-type="" data-backup="{{ uri.addNonce(base_url_relative ~ '/backup-manager.json/backuptask' ~ config.system.param_sep ~ 'backup/scope' ~ config.system.param.sep ~ 'pages', 'backup-form', 'backup-nonce') }}" class="button"><i class="fa fa-suitcase"></i> {{ "PLUGIN_BACKUP_MANAGER.BACKUP_PAGES"|tu }}: {{ "PLUGIN_BACKUP_MANAGER.BACKUP_PAGES"|tu }}</button>
 					<button type="button" class="button dropdown-toggle" data-toggle="dropdown">
 						<i class="fa fa-caret-down"></i>

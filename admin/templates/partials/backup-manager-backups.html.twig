@@ -1,4 +1,4 @@
-{% if authorize(['admin.backup', 'admin.maintenance', 'admin.super']) %}
+{% if authorize(['admin.backup-manager', 'admin.maintenance', 'admin.super']) %}
     <div id="latest">
         <h1>{{ "PLUGIN_BACKUP_MANAGER.LATEST_BACKUPS"|tu }}</h1>
         <table>

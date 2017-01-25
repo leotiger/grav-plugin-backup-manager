@@ -1,11 +1,11 @@
-{% if authorize(['admin.backup', 'admin.super']) %}
+{% if authorize(['admin.backup-manager', 'admin.maintenance', 'admin.super']) %}
     <div id="backup-insights" class="dashboard-item dashboard-right">
         <div class="primary-accent default-box-shadow">
             <h1>{{ "PLUGIN_BACKUP_MANAGER.INSIGHTS"|tu }} 
 				{% if backupmanager.testmode %}
 					<a id="download-backup" href="" class="button hidden">{{ "PLUGIN_BACKUP_MANAGER.DOWNLOAD_TEST"|tu }}</a>				
 				{% else %}
-					<a id="download-backup" href="" class="button hidden">{{ "PLUGIN_ADMIN.DOWNLOAD_BACKUP"|tu }}</a>				
+					<a id="download-backup" href="" class="button hidden">{{ "PLUGIN_BACKUP_MANAGER.BACKUP_DOWNLOAD"|tu }}</a>				
 				{% endif %}			
 			</h1>
             <div class="backup-update-charts">

@@ -33,7 +33,7 @@ class BackupManagerZip
 		'system',
 		'purge',		
 		'purgeall',
-		'purgepartials',
+		'purgepartial',
 		'purgetests',
 		'purgepages',
 		'purgeimages',
@@ -42,7 +42,7 @@ class BackupManagerZip
 		'purgedata',
 		'purgeplugins',
 		'purgeconfig',
-		'purgesytem',
+		'purgesystem',
 		'purgefailed'
     ];
 	
@@ -1040,7 +1040,7 @@ class BackupManagerZip
 		$days = intval(static::$keepDays);
 		$timelimit = time() - (60 * 60 * 24 * $days);
 
-		if ($files && (static::$keepDays > 0 || static::$destinationMaxSpace > 0 || $clearall === true || $clearall === 'partials')) {
+		if ($files && (static::$keepDays > 0 || static::$destinationMaxSpace > 0)) {
 			usort($files, function($a, $b) {
 				// Sort latest to oldest
 				return filemtime($a) < filemtime($b);
@@ -1055,7 +1055,7 @@ class BackupManagerZip
 						unlink($file);
 					}
 				}
-				elseif ($clearall && is_string($clearall)) {
+				elseif ($clearall && in_array("purge$clearall", static::$backupScopes)) {
 					$accu_file_size += $filesize;
 					if (stripos(strtolower(basename($file)), "-$clearall") !== false) {
 						$cleaned_bytes += $filesize;
@@ -1492,6 +1492,7 @@ class BackupManagerZip
 		$backupstore = Grav::instance()['locator']->findResource('backup://', true);
 		$count = 0;
 		$timelimit = null;
+		$filterpartials = false;
         if (!$backupstore) {
 			return 0;
 		}
@@ -1507,10 +1508,15 @@ class BackupManagerZip
 			elseif ($scope && (string)$scope === 'failed') {
 				$files = glob("$backupstore/{$site_id}*.*[0123456789]");
 			} 						
+			elseif ($scope && (string)$scope === 'site') {
+				// Really strange... glob needs a leading something for bracket matching
+				// as the first character to match cannot be the first character of the
+				// substring run in
+				$files = glob("$backupstore/{$site_id}*[zZ0123456789].[zZ][iI][pP]");
+			} 						
 			else {
 				$files = glob("$backupstore/{$site_id}*.[zZ][iI][pP]");
 			}
-			//$files = glob("$backupstore/{$site_id}*.[zZ][iI][pP]");
 			
 			if ($days && intval($days) > 0) {
 				$timelimit = time() - (60 * 60 * 24 * $days);
@@ -1546,7 +1552,7 @@ class BackupManagerZip
 		return $count;
 	}
 	
-	public static function storageLatestByContext($limit = 20, $scope = null, $days = null, $tests = null) {
+	public static function storageLatestByContext($limit = 50, $scope = null, $days = null, $tests = null) {
 		$backupstore = Grav::instance()['locator']->findResource('backup://', true);
 		$count = 0;
 		$timelimit = null;

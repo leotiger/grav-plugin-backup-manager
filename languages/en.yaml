@@ -7,7 +7,7 @@ PLUGIN_BACKUP_MANAGER:
   PURGE: Purge
   PURGE_TESTS: Tests
   PURGE_ALL: All
-  PURGE_PARTIALS: Partials
+  PURGE_PARTIAL: Partials
   LAST_24H: "< 24h"
   LAST_SITE_BACKUP: Last site backup
   STORAGE_STATE: Status
@@ -50,7 +50,7 @@ PLUGIN_BACKUP_MANAGER:
   TASK_PURGE: Simple Purge
   TASK_PURGETESTS: Purge Tests
   TASK_PURGEALL: Purge All
-  TASK_PURGEPARTIALS: Purge Partials
+  TASK_PURGEPARTIAL: Purge Partials
   TASK_PURGEMEDIA: Purge Media
   TASK_PURGESYSTEM: Purge System
   TASK_PURGEIMAGES: Purge Images

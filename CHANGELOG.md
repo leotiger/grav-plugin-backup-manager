@@ -1,3 +1,11 @@
+# v0.1.2
+## 01/25/2017
+
+1. [](#fixed)
+    * Issues with some purge scopes not working for naming problems
+	* Issue with statistics showing partial backups under the site counter too
+	* Showing download instead of download after a live run
+
 # v0.1.1
 ## 01/25/2017
 

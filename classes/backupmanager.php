@@ -305,7 +305,7 @@ class BackupManager
 	*
 	*/
 	public function getPeriod($days = 7) {
-		$files = BackupManagerZip::storageFilesByContext(null, $days);
+		$files = BackupManagerZip::storageFilesByContext('site', $days);
 		return $files;
 	}
 
@@ -316,7 +316,7 @@ class BackupManager
 	}
 	
 	public function getInstance() {
-		$files = BackupManagerZip::storageFilesByContext();
+		$files = BackupManagerZip::storageFilesByContext('site');
 		return $files;
 	}
 
@@ -567,9 +567,9 @@ class BackupManager
     protected function getFileStats()
     {
         $filestats = array();
-		$filestats['period'] = BackupManagerZip::storageFilesByContext(null, 7);
+		$filestats['period'] = BackupManagerZip::storageFilesByContext('site', 7);
 		$filestats['partials'] = BackupManagerZip::storageFilesByContext('partial');
-		$filestats['instance'] = BackupManagerZip::storageFilesByContext();
+		$filestats['instance'] = BackupManagerZip::storageFilesByContext('site');
 		$filestats['tests'] = BackupManagerZip::storageFilesByContext(null, null, true);
 		$filestats['all'] = BackupManagerZip::storageFilesByContext(null, null, 'all');
 		$filestats['failed'] = BackupManagerZip::storageFilesByContext('failed');
@@ -748,7 +748,9 @@ class BackupManager
 			$backuptype = $this->translate('PLUGIN_BACKUP_MANAGER.TASK_' . strtoupper($backup_scope));
 		}
 		$message = "";
+		$buttondownload = $this->translate('PLUGIN_BACKUP_MANAGER.DOWNLOAD_TEST');
 		if (!$runInTestMode || $force_exec) {
+			$buttondownload = $this->translate('PLUGIN_BACKUP_MANAGER.BACKUP_DOWNLOAD');
 			$message = $this->translate('PLUGIN_ADMIN.YOUR_BACKUP_IS_READY_FOR_DOWNLOAD') . '. <a href="' . $url . '" class="button">'
 				. $this->translate('PLUGIN_ADMIN.DOWNLOAD_BACKUP') . '</a>';			
 		}
@@ -773,6 +775,7 @@ class BackupManager
 			'urlzip'  => $url,
 			'forcebackup'  => $forceUrl,
 			'filestats' => $filestats,
+			'downbtnlabel' => $buttondownload,
             'toastr'  => [
                 'timeOut'           => "0",
                 'extendedTimeOut'   => "0",
@@ -789,7 +792,7 @@ class BackupManager
 	 * Latest Backups
 	 * 
      * Get our latest backups and classify them a bit
-	 * Real simple right now, with 20 we have a good quote
+	 * Real simple right now, with a limit of 50 there's a lot on the track
 	 * At least limit should show up soon in the settings
 	 * 
 	 * return array

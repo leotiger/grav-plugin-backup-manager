@@ -242,7 +242,7 @@
 		$('#store-failed').html(data.filestats.failed);
 		$('#store-tests').html(data.filestats.tests);
 		
-		$("#download-backup").attr('href', data.urlzip).removeClass('hidden');
+		$("#download-backup").html(data.downbtnlabel).attr('href', data.urlzip).removeClass('hidden');
 		if (data.forcebackup.length) {
 			$("#force-backup")
 				.data('backup', data.forcebackup)
