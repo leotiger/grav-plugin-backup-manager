@@ -111,5 +111,6 @@ that allows for an easy integration of backup functionality.
 
 This is still a baby, a zero version. For this reason issues are expected. But you can
 be sure that Backup Manager is already doing a good job! Before spending more time on this,
-I would appreciate feedback. If a something like this is needed. And the communication of
-issues is highly welcome.
+I would appreciate feedback. If a something like this is needed... The communication of
+issues helps as a strong indicator for that... If you have an issue, let us know. Same thing
+goes for proposals and ideas.
