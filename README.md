@@ -37,8 +37,8 @@ additional efforts on this.
 
 You can customize the backup process for your instance in the settings of the 
 plugin. Backup Manager facilitates a test mode that allows you to adapt backup to your
-environment, low resources: you restrict, support needed, you stuff all into a config
-backup... settings are important to allow for support...
+environment, low resources: you restrict: you need support, just stuff all into a partial
+"config backup", etc... configs are important for support...
 
 ## Installation
 
