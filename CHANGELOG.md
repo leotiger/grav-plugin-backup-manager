@@ -4,7 +4,7 @@
 1. [](#fixed)
     * Issues with some purge scopes not working for naming problems
 	* Issue with statistics showing partial backups under the site counter too
-	* Showing "Download" instead of "Download test" after a live run in the 
+	* Showing "Download test" instead of "Download" after a live run in the 
 	  Details
 
 # v0.1.1
