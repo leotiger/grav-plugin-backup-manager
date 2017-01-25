@@ -26,7 +26,7 @@ nice extra features:
 ## Known Issues
 
 A lot, this is still a baby. It's doing a good job but needs participation!
-One annoying thing detect just before launch: The backup manager should show
+One annoying thing detected just before launch: The backup manager should show
 up for allowed users (with sufficient credentials) but it doesn't, but that's probably
 due to the fact that I'm on a kind of an Admin Pro Site, for all the other stuff
 I'm working on... Too tired to fix this now. 
