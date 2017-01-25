@@ -6,6 +6,15 @@ them](https://github.com/leotiger/grav-plugin-backup-manager/issues).**
 
 > Enhanced backup for your Grav instance
 
+## Why is user driven backup important?
+
+Users of emerging projects like Grav need freedom. Backup and archive facilities that work
+hazzle-free, offer confidence. Pages, content, media: users want to be free, easy...
+But it's not only about opportunities and freedom, this backup manager offers a lot to
+admins as well. And there's more to come if this plugin receives some positive feedback!
+
+And yeah: invited to contribute!
+
 ## Introduction
 
 Grav provides backup out of the box but offers no control over the process.
@@ -21,24 +30,17 @@ nice extra features:
 * purging
 * clean up of failed backups
 * enhanced cli
+* access to a reduced set of options for non super users
 * etc., etc.
-
-## Known Issues
-
-A lot, this is still a baby. It's doing a good job but needs participation!
-One annoying thing detected just before launch: The backup manager should show
-up for allowed users (with sufficient credentials) but it doesn't, but that's probably
-due to the fact that I'm on a kind of an Admin Pro Site, for all the other stuff
-I'm working on... Too tired to fix this now. 
-You'd do admin only right now! :-) And I want feedback first... before offering
-additional efforts on this.
 
 ## Configuration
 
 You can customize the backup process for your instance in the settings of the 
-plugin. Backup Manager facilitates a test mode that allows you to adapt "THE BACKUP MANAGER
-FOR GRAV" (a joke) to your environment, low resources: you restrict: you need support, just 
-stuff all into a partial "config backup", etc... configs are important for support...
+plugin. Backup Manager facilitates a test mode that allows you to adapt "THE MOTHER OF
+ALL BACKUPS FOR GRAV" (a joke) to your environment, low resources: you restrict: you 
+need support, just stuff all into a partial "config backup", etc... configs are 
+important for support... It does not include php status right now but it will for the
+config scope.
 
 ## Installation
 
@@ -66,11 +68,9 @@ the Grav people. Difficult. Finally the decision to make a plugin out of this ma
 more pros than cons. Nevertheless, I obliged myself to work hard on core compatible code
 that allows for an easy integration of backup functionality.
 
-## Why is user driven backup important?
+## Known Issues
 
-Users of emerging projects like Grav need freedom. Backup and archive facilities that work
-hazzle-free, offer confidence. Pages, content, media: users want to be free, easy...
-But it's not only about opportunities and freedom, this backup manager offers a lot to
-admins as well. And there's more to come if this plugin receives some positive feedback!
+A lot, this is still a baby, for this reason they are not know but expected. It's doing
+a good job but needs participation! Before spending more time on this, I would appreciate
+feedback. If something like this is needed.
 
-And yeah: invited to contribute!

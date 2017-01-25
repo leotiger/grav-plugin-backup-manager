@@ -1,3 +1,20 @@
+# v0.1.1
+## 01/25/2017
+
+1. [](#new)
+    * Added phpinfo output to config and system scope
+	  to offer insights into system if used for support
+
+2. [](#fixed)
+    * Strict error for Google Chrome and others (Issue 1 by @iusvar)
+	* Permissions to allow the plugin to show up correctly in the sidebar menu
+	  for users without admin.super rights 
+	* A false error showing up when not admin.super
+
+3. [](#improved)
+    * Allow supression of messages for task authorize function
+	  (Something admin plugin should offer as well)
+
 # v0.1.0
 ## 01/21/2017
 
