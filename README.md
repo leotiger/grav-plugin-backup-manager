@@ -37,10 +37,49 @@ nice extra features:
 
 You can customize the backup process for your instance in the settings of the 
 plugin. Backup Manager facilitates a test mode that allows you to adapt "THE MOTHER OF
-ALL BACKUPS FOR GRAV" (a joke) to your environment, low resources: you restrict: you 
-need support, just stuff all into a partial "config backup", etc... configs are 
-important for support... It does not include php status right now but it will for the
-config scope.
+ALL BACKUPS FOR GRAV" (a joke) to your environment, low resources, you control, you
+restrict. With scopes you dispose of predefined backup sets. If you need support, 
+just stuff all into a partial "config backup" by using the "Config" scope. Backup
+Manager packs now all your configurations, the content of the root folder and a file
+with the phpinfo into a backup archive.
+
+Existing backup scopes:
+
+* admin
+* defaults
+* config
+* pages
+* user
+* media
+* images
+* audio
+* video
+* log
+* plugins
+* themes
+* imagecache
+* cache
+* data
+* system
+
+Defined purging scopes:
+
+* purge		
+* purgeall
+* purgepartial
+* purgetests
+* purgepages
+* purgeimages
+* purgemedia
+* purgethemes
+* purgedata
+* purgeplugins
+* purgeconfig
+* purgesystem
+* purgefailed
+
+The default purge context runs during every backup process and works on the basis of your settings
+for the Backup Manager for capacity and the days you want to keep backups.
 
 ## Installation
 
@@ -70,7 +109,7 @@ that allows for an easy integration of backup functionality.
 
 ## Known Issues
 
-A lot, this is still a baby, for this reason they are not know but expected. It's doing
-a good job but needs participation! Before spending more time on this, I would appreciate
-feedback. If something like this is needed.
-
+This is still a baby, a zero version. For this reason issues are expected. But you can
+be sure that Backup Manager is already doing a good job! Before spending more time on this,
+I would appreciate feedback. If a something like this is needed. And the communication of
+issues is highly welcome.
