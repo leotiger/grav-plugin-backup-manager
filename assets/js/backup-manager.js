@@ -1,5 +1,5 @@
 (function ($) {
-
+  "use strict";
   $(window).load( function() {   
 
 	var backupcharts = {};
