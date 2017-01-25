@@ -9,7 +9,7 @@ author:
   url: http://www.saveva.com
 homepage: https://github.com/leotiger/grav-plugin-backup-manager
 bugs: https://github.com/leotiger/grav-plugin-backup-manager/issues
-docs: https://github.com/leotiger/grav-plugin-backup-manager/blob/develop/README.md
+docs: https://github.com/leotiger/grav-plugin-backup-manager/blob/master/README.md
 license: MIT
 
 dependencies:
