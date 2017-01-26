@@ -14,28 +14,19 @@
                     </div>
                     <p class="js__storage-handled-description">{{ "PLUGIN_BACKUP_MANAGER.STORAGE_CAPACITY"|tu ~ ': ' ~ storestatus.capacity }}</p>
                 </div>
-				{% if backuplast.days == 0 %}
-                <div id="lastbackup-chart" class="backups-chart" data-chart-context="lastbackup" data-chart-type="pie" data-chart-data="{{ {'series': [100, 0]}|json_encode|e('html_attr') }}">
+                <div id="lastbackup-chart" class="backups-chart" data-chart-context="lastbackup" data-chart-type="pie" data-chart-data="{{ {'series': [backuplast.chart_fill, backuplast.chart_empty]}|json_encode|e('html_attr') }}">
                     <div class="chart-wrapper">
                         <div id="chart-backup" class="ct-chart-backup chart-loader"><i class="fa fa-refresh fa-spin"></i></div>
-                        <span class="numeric hidden">
-						{{ "PLUGIN_BACKUP_MANAGER.LAST_24H"|tu }}
-						<em>{{ "PLUGIN_ADMIN.TODAY"|tu|lower }}</em></span>
+                        <span class="numeric hidden" id="backupdaysindicator">
+						{{ backuplast.days|raw }}
+						
+						<em id="backupdayslabel">
+						{{ backuplast.dayslabel}}
+						</em>
+						</span>
                     </div>
                     <p class="hidden">{{ "PLUGIN_BACKUP_MANAGER.LAST_SITE_BACKUP"|tu }}</p>
                 </div>
-				{% else %}
-                <div id="lastbackup-chart" class="backups-chart" data-chart-context="lastbackup" data-chart-type="pie" data-chart-data="{{ {'series': [backuplast.chart_fill, backuplast.chart_empty]}|json_encode|e('html_attr') }}">
-                    <div class="chart-wrapper">
-                        <div id="chart-backup class="ct-chart-backup chart-loader"><i class="fa fa-refresh fa-spin"></i></div>
-                        <span class="numeric hidden">
-						{{ backup.days|raw }}
-						<em>{{ "PLUGIN_ADMIN.DAYS"|tu|lower }}</em></span>
-                    </div>
-                    <p class="hidden">{{ "PLUGIN_ADMIN.LAST_SITE_BACKUP"|tu }}</p>
-                </div>
-				{% endif %}
-				
             </div>
 
             <div class="flush-bottom button-bar backup-manager-bar">

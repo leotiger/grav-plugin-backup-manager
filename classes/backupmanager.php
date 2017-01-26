@@ -229,28 +229,59 @@ class BackupManager
      */
     public function lastBackup()
     {
+		$files = BackupManagerZip::storageFilesByContext('site');
+		if ($files === 0) {
+			$log = $this->grav['locator']->findResource("log://backup.log");
+			if (file_exists($log)) {
+				unlink($log);
+			}
+		}
+		
         $file    = JsonFile::instance($this->grav['locator']->findResource("log://backup.log"));
         $content = $file->content();
+		$label = $this->translate("PLUGIN_BACKUP_MANAGER.PLEASE_BACKUP");
+		//$this->translate("PLUGIN_BACKUP_MANAGER.LAST_BACKUP_UNKOWN"),
         if (empty($content)) {
             return [
-                'days'        => '&infin;',
-                'chart_fill'  => 100,
-                'chart_empty' => 0
+                'days'        => "&#x221e;",
+                'chart_fill'  => 0,
+                'chart_empty' => 100,
+				'dayslabel' => $label
             ];
         }
-
         $backup = new \DateTime();
         $backup->setTimestamp($content['time']);
         $diff = $backup->diff(new \DateTime());
 
         $days       = $diff->days;
-        $chart_fill = $days > 30 ? 100 : round($days / 30 * 100);
-
-        return [
-            'days'        => $days,
-            'chart_fill'  => $chart_fill,
-            'chart_empty' => 100 - $chart_fill
-        ];
+		if ($days > 6) {
+			
+            return [
+                'days'        => $this->translate("PLUGIN_BACKUP_MANAGER.SEVENPLUSDAYS"),
+                'chart_fill'  => 0,
+                'chart_empty' => 100,
+				'dayslabel' => $label
+            ];			
+		}
+		else {
+			$chart_empty = round((((($days + 7) / 7) - 1) * 100), 2);
+			if ($days == 0) {
+				$days = $this->translate("PLUGIN_BACKUP_MANAGER.LAST_24H");
+				$label = $this->translate("PLUGIN_BACKUP_MANAGER.TODAY");
+			}
+			elseif ($days == 1) {
+				$label = $this->translate("PLUGIN_BACKUP_MANAGER.DAY");
+			}
+			else {
+				$label = $this->translate("PLUGIN_BACKUP_MANAGER.DAYS");				
+			}
+			return [
+				'days'        => $days,
+				'chart_fill'  => 100 - $chart_empty,
+				'chart_empty' => $chart_empty,
+				'dayslabel' => $label
+			];			
+		}
     }
 
     /**
@@ -317,6 +348,12 @@ class BackupManager
 	
 	public function getInstance() {
 		$files = BackupManagerZip::storageFilesByContext('site');
+		if ($files == 0) {
+			$log = $this->grav['locator']->findResource("log://backup.log");
+			if (file_exists($log)) {
+				unlink($log);
+			}
+		}		
 		return $files;
 	}
 
@@ -567,9 +604,17 @@ class BackupManager
     protected function getFileStats()
     {
         $filestats = array();
-		$filestats['period'] = BackupManagerZip::storageFilesByContext('site', 7);
+		$files = BackupManagerZip::storageFilesByContext('site');
+		if ($files === 0) {
+			$log = $this->grav['locator']->findResource("log://backup.log");
+			if (file_exists($log)) {
+				unlink($log);
+			}
+		}
+		$filestats['instance'] = $files;		
+		
+		$filestats['period'] = BackupManagerZip::storageFilesByContext('site', 7);	
 		$filestats['partials'] = BackupManagerZip::storageFilesByContext('partial');
-		$filestats['instance'] = BackupManagerZip::storageFilesByContext('site');
 		$filestats['tests'] = BackupManagerZip::storageFilesByContext(null, null, true);
 		$filestats['all'] = BackupManagerZip::storageFilesByContext(null, null, 'all');
 		$filestats['failed'] = BackupManagerZip::storageFilesByContext('failed');
@@ -646,6 +691,7 @@ class BackupManager
 
 		
 		$filestats = $this->getFileStats();
+		$lastBackup = $this->lastBackup();
 		
         $this->json_response = [
             'status'  => 'success',
@@ -656,6 +702,7 @@ class BackupManager
 			'urlzip'  => '',
 			'forcepurge'  => $forceUrl,
 			'filestats' => $filestats,
+			'lastbackup' => $lastBackup,
             'toastr'  => [
                 'timeOut'           => "0",
                 'extendedTimeOut'   => "0",
@@ -725,7 +772,7 @@ class BackupManager
 
 		
 		$forceUrl = "";
-		$runInTestMode = $this->grav['config']->get('plugins.backup-manager.backup.testmode.enabled');				
+		$runInTestMode = $this->grav['config']->get('plugins.backup-manager.backup.testmode.enabled');
 		$backuptype = "";
 		if (!$backup_scope) {
 			if ($runInTestMode) { // && $this->authorizeTask('backup', ['admin.maintenance', 'admin.super']) ) {
@@ -766,6 +813,7 @@ class BackupManager
 		$last = $log->content();
 		$storestatus = $this->storeStatus();
 		$filestats = $this->getFileStats();
+		$lastBackup = $this->lastBackup();		
         $this->json_response = [
             'status'  => 'success',
             'message' => $message,
@@ -776,6 +824,7 @@ class BackupManager
 			'forcebackup'  => $forceUrl,
 			'filestats' => $filestats,
 			'downbtnlabel' => $buttondownload,
+			'lastbackup' => $lastBackup,
             'toastr'  => [
                 'timeOut'           => "0",
                 'extendedTimeOut'   => "0",
@@ -805,7 +854,9 @@ class BackupManager
 			// Is our third credential holder a admin.backup user
 			$restrict = true;
 		}
-		$files = BackupManagerZip::storageLatestByContext();
+		
+		$backupFilesToShow = $this->grav['config']->get('backup.storage.showbackups') ? $this->grav['config']->get('backup.storage.showbackups') : 50;
+		$files = BackupManagerZip::storageLatestByContext($backupFilesToShow);
 		$pack = array();
 		foreach($files as $filekey => $file) {
 			if (file_exists($file)) {

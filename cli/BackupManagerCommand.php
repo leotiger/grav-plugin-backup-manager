@@ -40,7 +40,7 @@ class BackupManagerCommand extends ConsoleCommand
 				'scope', 
 				's', 
 				InputOption::VALUE_OPTIONAL, 
-				'You can specify one out of: admin, config, pages, user, media, images, audio, video, log, plugins, themes, imagecache, cache, data, system, purge, purgetests, purgeall'
+				'You can specify working contexts like admin, config, pages, user, media, images, purge. Please see the documentation for a list of all options.'
 			)
             ->addOption(
 				'runastest', 

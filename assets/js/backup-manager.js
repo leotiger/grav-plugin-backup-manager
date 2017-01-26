@@ -7,17 +7,21 @@
 		var that = this;
 		let name = $(this).data('chart-context') || '';
 		let data = $(this).data('chart-data') || {};
-		let container = $(this).find('.ct-chart-backup').empty()[0]
-		backupcharts[name] = new Chartist.Pie(container, data, {
-			donut: true,
-			donutWidth: 10,
-			startAngle: 0,
-			total: 100,
-			showLabel: false,
-			height: 150,
-			chartPadding: 5
-		});			
-		backupcharts[name].on('created', function() {$(that).find('.hidden').removeClass('hidden')});
+		let container = $(this).find('.ct-chart-backup').empty()[0];
+		if (name.length) {
+			console.log(name);
+			console.log(data);
+			backupcharts[name] = new Chartist.Pie(container, data, {
+				donut: true,
+				donutWidth: 10,
+				startAngle: 0,
+				total: 100,
+				showLabel: false,
+				height: 150,
+				chartPadding: 5
+			});			
+			backupcharts[name].on('created', function() {$(that).find('.hidden').removeClass('hidden')});
+		}
 	});
     // Missing optimizations and gulp but for 0.1.0 ok
 	$('#force-backup').on('click', function() {
@@ -222,8 +226,13 @@
 	var processBackupResults = function(data) {
 		let last = data.last;
 		let testmode = last.runInTestMode ? " (Test Mode)" : "";
-		$('#store-used').html(data.storestatus.used);
-		backupcharts['storage'].update({"series":[data.storestatus.chart_fill, data.storestatus.chart_empty]});				
+		if (testmode == "") {
+			$('#store-used').html(data.storestatus.used);
+			backupcharts['storage'].update({"series":[data.storestatus.chart_fill, data.storestatus.chart_empty]});
+			backupcharts['lastbackup'].update({"series":[data.lastbackup.chart_fill, data.lastbackup.chart_empty]});				
+			$('#backupdaysindicator').html(data.lastbackup.days);
+			$('#backupdayslabel').html(data.lastbackup.dayslabel);	
+		}
 		toastr.success(data.message, data.backuptype + testmode, {closeButton:data.toastr.closeButton, timeOut:data.toastr.timeOut, extendedTimeOut: data.toastr.extendedTimeOut, "newestOnTop": true, "preventDuplicates": true});
 
 		$('#process-timeout').html(data.last.processTimeout + 's');
@@ -269,7 +278,13 @@
 	var processPurgeResults = function(data) {
 		let last = data.last;
 		let testmode = last.runInTestMode ? " (Test Mode)" : "";
-		$('#store-used').html(data.storestatus.used);
+		if (testmode == "") {
+			$('#store-used').html(data.storestatus.used);
+			backupcharts['storage'].update({"series":[data.storestatus.chart_fill, data.storestatus.chart_empty]});		
+			backupcharts['lastbackup'].update({"series":[data.lastbackup.chart_fill, data.lastbackup.chart_empty]});				
+			$('#backupdaysindicator').html(data.lastbackup.days);
+			$('#backupdayslabel').html(data.lastbackup.dayslabel);	
+		}
 		toastr.success(data.message, data.backuptype + testmode, {closeButton:data.toastr.closeButton, timeOut:data.toastr.timeOut, extendedTimeOut: data.toastr.extendedTimeOut, "newestOnTop": true, "preventDuplicates": true});
 
 		$('#purge-type').html(data.backuptype);

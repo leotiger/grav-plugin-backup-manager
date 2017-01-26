@@ -1,3 +1,20 @@
+# v0.1.3
+## 01/26/2017
+
+1. [](#fixed)
+    * Remove unused setting admin.pages from blueprint (Issue 2)
+	* Display for backups older than today works now
+
+2. [](#new)
+    * Add setting and support for number of backups to show
+	  in the latest backups list
+
+3. [](#improved)
+    * Make last backup graph display work like proposed in issue 910
+	  for grav-plugin-admin
+	* Delete backup.log file when no related site backup exists
+	* Update last backup graph when purging or adding related site backups
+	  
 # v0.1.2
 ## 01/25/2017
 

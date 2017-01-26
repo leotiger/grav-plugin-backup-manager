@@ -44,6 +44,12 @@ PLUGIN_BACKUP_MANAGER:
   ALL_BACKUPS: All
   LAST_30_DAYS: < 30 days
   LAST_7_DAYS: < 7 days
+  SEVENPLUSDAYS: 7+ days
+  TODAY: Today
+  LAST_BACKUP_UNKOWN: Unknown
+  PLEASE_BACKUP: Please backup
+  DAY: Day
+  DAYS: Days
   LAST_SEVEN_DAYS: Site backups generated during the last seven days
   PURGE_SUCCESS: Your backup store has been purged.
   TASK_SITE: Site Backup
