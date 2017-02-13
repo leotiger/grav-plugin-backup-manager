@@ -319,7 +319,7 @@ class BackupManager
 			];					
 		}
 		else {
-			$capacity = $this->admin->translate("PLUGIN_BACKUP_MANAGER.STORAGE_UNMANAGED");
+			$capacity = $this->translate("PLUGIN_BACKUP_MANAGER.STORAGE_UNMANAGED");
 			return [
 				'days'        => 0,
 				'chart_fill'  => 0,
@@ -855,7 +855,7 @@ class BackupManager
 			$restrict = true;
 		}
 		
-		$backupFilesToShow = $this->grav['config']->get('backup.storage.showbackups') ? $this->grav['config']->get('backup.storage.showbackups') : 50;
+		$backupFilesToShow = $this->grav['config']->get('plugins.backup-manager.backup.storage.showbackups') ? $this->grav['config']->get('plugins.backup-manager.backup.storage.showbackups') : 50;
 		$files = BackupManagerZip::storageLatestByContext($backupFilesToShow);
 		$pack = array();
 		foreach($files as $filekey => $file) {
@@ -889,6 +889,5 @@ class BackupManager
 			}
 		}
 		return $pack;
-    }
-	
+    }	
 }
