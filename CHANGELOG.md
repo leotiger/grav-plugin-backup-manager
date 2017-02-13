@@ -1,3 +1,10 @@
+# v0.1.4
+## 02/13/2017
+
+1. [](#fixed)
+    * Make setting for number of backups to show operative (Issue 5)
+    * Fix internal function call inside storeStatus function (Issue 6)
+
 # v0.1.3
 ## 01/26/2017
 
