@@ -346,6 +346,7 @@ class BackupManagerZip
 		$origins = null;
 		$restricttypes = null;
 		$current_config = null;
+	    	$casesensitive = null;
 		
 		if ($scope && $scope === "defaults") {
 			
