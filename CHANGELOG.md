@@ -1,3 +1,9 @@
+# v0.1.5
+## 04/06/2017
+
+1. [](#fixed)
+    * undefined variable casesensitive changed to caseinsensitive which runs in via CLI config (Issue #8)
+
 # v0.1.4
 ## 02/13/2017
 

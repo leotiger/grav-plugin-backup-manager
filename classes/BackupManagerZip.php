@@ -351,7 +351,7 @@ class BackupManagerZip
 			
 			if ($configVars && is_array((array)$configVars)) {
 				$timeout = isset($config['timeout']) ? $config['timeout'] : null;
-				$casesensitive = isset($config['casesensitive']) ? $config['casesensitive'] : null;
+				$caseinsensitive = isset($config['casesensitive']) ? $config['casesensitive'] : null;
 				$forceexec = isset($config['forceexec']) ? $config['forceexec'] : null;
 			}
 			
@@ -368,7 +368,7 @@ class BackupManagerZip
 			
 			$ignoreCase = (bool)$config->get('plugins.backup-manager.backup.ignore.foldercase');			
 			// We allow to overide this as this may affect results of automated backups from cli
-			if (!$ignoreCase && $casesensitive) {
+			if (!$ignoreCase && isset($caseinsensitive) && $caseinsensitive) {
 				$ignoreCase = true;
 			}	
 			// Same for timeout
@@ -503,7 +503,7 @@ class BackupManagerZip
 
 			$ignoreCase = (bool)$config->get('plugins.backup-manager.backup.ignore.foldercase');			
 			// We allow to overide this as this may affect results of automated backups from cli
-			if (!$ignoreCase && $casesensitive) {
+			if (!$ignoreCase && isset($caseinsensitive) && $caseinsensitive) {
 				$ignoreCase = true;
 			}			
 			// Same for timeout

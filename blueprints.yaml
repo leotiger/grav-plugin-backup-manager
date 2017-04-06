@@ -1,5 +1,5 @@
 name: Backup Manager
-version: 0.1.4
+version: 0.1.5
 description: Enhanced backup for GRAV with CLI support
 keywords: backup, partial, archive, support, image extraction, pages backup, media backup, cli
 icon: battery-3
