@@ -1,3 +1,9 @@
+# v0.1.6
+## 20/08/2018
+
+1. [](#fixed)
+    * Compatibility with JQuery 3.x (Issue #13, thx @underr_ua)
+
 # v0.1.5
 ## 04/06/2017
 

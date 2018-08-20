@@ -346,7 +346,7 @@ class BackupManagerZip
 		$origins = null;
 		$restricttypes = null;
 		$current_config = null;
-		
+                
 		if ($scope && $scope === "defaults") {
 			
 			if ($configVars && is_array((array)$configVars)) {
