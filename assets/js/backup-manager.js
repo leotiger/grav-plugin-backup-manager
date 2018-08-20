@@ -1,8 +1,7 @@
 (function ($) {
   "use strict";
-  $(window).load( function() {   
-
-	var backupcharts = {};
+  $(window).on('load', function() {
+    var backupcharts = {};
     $('#backup-maintenance .backups-chart').each(function() {
 		var that = this;
 		let name = $(this).data('chart-context') || '';
