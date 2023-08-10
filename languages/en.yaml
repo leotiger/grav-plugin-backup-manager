@@ -34,8 +34,8 @@ PLUGIN_BACKUP_MANAGER:
   EXECUTE_PURGE_HINT: "You're working in test mode. You can do a real purge based on the settings of your last test run using this button."
   FAILED_BACKUPS: Failed
   FAILED_BACKUPS_HINT: Backups that failed within the last four hours (or more). Please reload the page to see updated statistics.
-  FILES_OVER_MAX_CAPACITY: Files over capacity
-  FILES_OVER_MAX_DAYS: Files over keep days
+  FILES_OVER_MAX_CAPACITY: Files over max capacity
+  FILES_OVER_MAX_DAYS: Files over max days
   FILES_TO_ZIP: Files to zip
   INSIGHTS: Details
   KEEP_DAYS: Days to keep backups
