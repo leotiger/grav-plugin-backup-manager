@@ -1,0 +1,113 @@
+PLUGIN_BACKUP_MANAGER:
+  ALL_BACKUPS: Alle
+  BACKUP: BACKUP
+  BACKUP_CONFIG: Konfiguration
+  BACKUP_DATA: Daten
+  BACKUP_DATE: Datum
+  BACKUP_DEFAULTS: Standart
+  BACKUP_DOWNLOAD: Herunterladen
+  BACKUP_IMAGES: Abbilder
+  BACKUP_MANAGER: Erweitertes Backup für GRAV
+  BACKUP_MEDIA: Medien
+  BACKUP_OVERVIEW: Backup-Statistiken
+  BACKUP_PAGES: Seiten
+  BACKUP_PLUGINS: Plugins
+  BACKUP_SCOPE: Sicherungsumfang
+  BACKUP_SIZE: Größe
+  BACKUP_SUCCESS_TESTMODE: "TESTMODUS: Nichts wirklich getan. Bitte verwende Live Run zum Ausführen."
+  BACKUP_SYSTEM: System
+  BACKUP_THEMES: Themes
+  BACKUP_TYPE: Typ
+  BACKUP_USER: Benutzer
+  BYTES_TO_ZIP: Bytes zum Zippen
+  BYTES_ZIPPED: Bytes gezippt
+  DAYS: Tage
+  DAY: Tag
+  DOWNLOAD_BACKUP_TESTMODE: Download NUR FÜR TESTZWECKE
+  DOWNLOAD_TESTMODE_HINT: Diese Zip-Datei ist nur zum Testen. Sie enthält die Ordnerstruktur ohne Dateien.
+  DOWNLOAD_TEST: Test herunterladen
+  DURATION: Dauer
+  EXCLUDED_FILES: Ausgeschlossene Dateien
+  EXECUTE_BACKUP: Backup Live Run
+  EXECUTE_BACKUP_HINT: "Du arbeitest im Testmodus. Mit dieser Schaltfläche kannst du ein echtes Backup erstellen, das auf den Einstellungen des letzten Testlaufs basiert."
+  EXECUTE_PURGE: Live-Run bereinigen
+  EXECUTE_PURGE_HINT: "Du arbeitest im Testmodus. Unter Verwendung dieser Schaltfläche kannst du eine echte Bereinigung auf der Grundlage der Einstellungen deines letzten Testlaufs tun."
+  FAILED_BACKUPS: Fehlgeschlagen
+  FAILED_BACKUPS_HINT: Backups, die innerhalb der letzten vier Stunden (oder mehr) fehlgeschlagen sind. Bitte lade die Seite neu, um aktuelle Statistiken zu sehen.
+  FILES_OVER_MAX_CAPACITY: Dateien über der maximalen Kapazität
+  FILES_OVER_MAX_DAYS: Dateien über maximal Tage
+  FILES_TO_ZIP: Dateien zum Zippen
+  INSIGHTS: Details
+  KEEP_DAYS: Tage, um Backups aufzubewahren
+  LAST_7_DAYS: < 7 Tage
+  LAST_24H: "< 24h"
+  LAST_30_DAYS: < 30 days
+  LAST_BACKUP_UNKOWN: Unbekannt
+  LAST_SEVEN_DAYS: Backups der Website, die in den letzten sieben Tagen erstellt wurden
+  LAST_SITE_BACKUP: Letzte Sicherung der Website
+  LATEST_BACKUPS: Letzte Backups
+  LIVE_MODE_INDICATOR: LIVE-MODUS
+  PARTIAL_BACKUPS: Partials
+  PARTIAL_BACKUP: Partial
+  PLEASE_BACKUP: Bitte sichern
+  PROCESS_TIMEOUT: Prozess-Timeout
+  PURGED_BYTES: Bereinigte Bytes
+  PURGE: Bereinigen
+  PURGE_ALL: Alle
+  PURGE_BUTTON_HINT: Die Standardbereinigung wird jedes Mal ausgeführt, wenn du ein Backup im Live-Modus erstellst. Um einen verwalteten Backup-Speicher einzurichten, musst du die Kapazität und die Aufbewahrungstage in der Plugin-Konfiguration festlegen.
+  PURGE_CONFIG: Konfiguration
+  PURGE_DATA: Datum
+  PURGE_FAILED: Fehlgeschlagen
+  PURGE_IMAGES: Abbilder
+  PURGE_MEDIA: Medien
+  PURGE_PAGES: Seiten
+  PURGE_PARTIAL: Partials
+  PURGE_PLUGINS: Plugins
+  PURGE_SUCCESS: Dein Backup-Store wurde gelöscht.
+  PURGE_SUCCESS_TESTMODE: "TEST-MODUS: Nichts wirklich gemacht. Bitte verwende Live Run zur Ausführung."
+  PURGE_SYSTEM: System
+  PURGE_TESTS: Tests
+  PURGE_THEMES: Themes
+  PURGE_TYPE: Purge Scope
+  PURGE_USER: Benutzer
+  RATIO: Verdichtungsverhältnis
+  SAVINGS: Gespeichert
+  SETTINGS: Einstellungen
+  SEVENPLUSDAYS: 7+ Tage
+  SITE_BACKUPS: Seite
+  SITE_BACKUP: Instanz
+  STORAGE: Speicher
+  STORAGE_CAPACITY: Kapazität
+  STORAGE_STATE: Status
+  STORAGE_UNMANAGED: Nicht verwaltet
+  STORAGE_USED: Verwendet
+  STORE_FILES_DELETED: Dateien gelöscht
+  STORE_FILES_DELETED_HINT: "Der Backup Manager löscht fehlgeschlagene Sicherungen nur, wenn sie älter als vier Stunden sind. Wenn du im Testmodus arbeitest, musst du die Bereinigung wie einen Live-Lauf ausführen. Im Testmodus bekommst du einen Einblick, was gelöscht wird."
+  STORE_LOCATION: Storage location
+  TASK_CONFIG: Support Backup
+  TASK_DATA: Data Backup
+  TASK_IMAGES: Image Backup
+  TASK_MEDIA: Media Backup
+  TASK_PAGES: Pages Backup
+  TASK_PURGEALL: Alles bereinigen
+  TASK_PURGECONFIG: Konfigurationen bereinigen
+  TASK_PURGEDATA: Daten bereinigen
+  TASK_PURGEFAILED: Bereinigung fehlgeschlagen
+  TASK_PURGEIMAGES: Abbilder bereinigen
+  TASK_PURGEMEDIA: Medien bereinigen
+  TASK_PURGEPAGES: Seiten bereinigen
+  TASK_PURGEPARTIAL: Partials bereinigen
+  TASK_PURGEPLUGINS: Plugins bereinigen
+  TASK_PURGESYSTEM: Bereinigungssystem
+  TASK_PURGETESTS: Tests bereinigen
+  TASK_PURGETHEMES: Themen bereinigen
+  TASK_PURGEUSER: Benutzer bereinigen
+  TASK_PURGE: Einfache Bereinigung
+  TASK_SITE: Seiten-Backup
+  TASK_SYSTEM: System-Backup
+  TASK_THEMES: Themes-Backup
+  TASK_USER: Benutzer-Backup
+  TEST_BACKUPS: Tests
+  TEST_MODE_INDICATOR: SICHERUNGSMODUS (TEST)
+  TODAY: Today
+  ZIP_STATUS: Zip Status
