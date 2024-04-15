@@ -1,3 +1,9 @@
+# v0.1.7
+## 04/15/2024
+
+1. [](#fixed)
+    * Language yaml problem (Issue #20)
+
 # v0.1.6
 ## 20/08/2018
 
