@@ -6,6 +6,10 @@ them](https://github.com/leotiger/grav-plugin-backup-manager/issues).**
 
 > Enhanced backup for your Grav instance
 
+## Discontinued
+
+The backup tool build into GRAV Admin plugin offers everything you need ourdays.
+
 ## Why is user driven backup important?
 
 Users of emerging projects like Grav need freedom. Backup and archive facilities that work
